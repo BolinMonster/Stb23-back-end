@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stb23:stb xmlns:stb23="http://univrouen.fr/stb23" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://univrouen.fr/stb23 stb23.tp2.xsd ">
+  <stb23:title>stb23:title</stb23:title>
+  <stb23:version>0.0</stb23:version>
+  <stb23:date>2001-12-31T12:00:00</stb23:date>
+  <stb23:description>stb23:description</stb23:description>
+  <stb23:client>
+    <stb23:entity>stb23:entity</stb23:entity>
+    <stb23:person gender="M." lastname="Tintin">Tintin</stb23:person>
+    <stb23:mail>tintin@mail.com</stb23:mail>
+  </stb23:client>
+  <stb23:team>
+    <stb23:member>
+      <stb23:person gender="M." lastname="Dupont">Dupont</stb23:person>
+      <stb23:mail>dupont@mail.com</stb23:mail>
+      <stb23:function>stb23:function</stb23:function>
+    </stb23:member>
+    <stb23:member>
+      <stb23:person gender="M." lastname="Milou">Milou</stb23:person>
+      <stb23:mail>milou@mail.com</stb23:mail>
+      <stb23:function>stb23:function</stb23:function>
+    </stb23:member>
+  </stb23:team>
+  <stb23:features>
+    <stb23:feature name="analyse de la chasse" number="0" section="0">
+      <stb23:description>stb23:description</stb23:description>
+      <stb23:priority>0</stb23:priority>
+    </stb23:feature>
+  </stb23:features>
+</stb23:stb>

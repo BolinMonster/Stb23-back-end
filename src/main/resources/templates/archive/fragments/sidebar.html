@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>STB23 | Sidebar</title>
+</head>
+<!-- Sidebar -->
+<div th:fragment="sidebar" id="sidebar"
+	class="d-flex flex-column flex-shrink-0 p-3 bg-light min-vh-100 sidebar-expanded">
+	<a th:href="@{/home}"
+		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+		<i class="fa-sharp fa-solid fa-book fa-xl"></i>&nbsp;STB23
+	</a>
+	<hr>
+	<ul class="nav nav-pills flex-column mb-auto">
+		<li class="nav-item"><a th:href="@{/home}"
+			class="nav-link active hide-text" aria-current="page"> <i
+				class="fa-solid fa-house"></i>&nbsp;Accueil
+		</a></li>
+		<li><a th:href="@{/help}" class="nav-link link-dark hide-text">
+				<i class="fa-solid fa-circle-info"></i>&nbsp;Aide
+		</a></li>
+		<li><a th:href="@{/resume}" class="nav-link link-dark hide-text">
+				<i class="fa-solid fa-layer-group"></i>&nbsp;Liste des STB
+		</a></li>
+	</ul>
+	<style>
+.sidebar-expanded {
+	width: 280px;
+	transition: width 0.5s ease;
+}
+
+.sidebar-collapsed .hide-text {
+    display: none;
+}
+
+.sidebar-collapsed {
+	width: 80px;
+	transition: width 0.5s ease;
+}
+</style>
+	<button id="sidebarToggle" class="btn btn-primary">
+		<i class="fa fa-compress" aria-hidden="true"></i>
+	</button>
+	<script>
+	const sidebarToggle = document.getElementById('sidebarToggle');
+	const sidebar = document.getElementById('sidebar');
+	sidebarToggle.addEventListener('click', function() {
+	    sidebar.classList.toggle('sidebar-collapsed');
+	    const textElements = document.getElementsByClassName('hide-text');
+	    for (let i = 0; i < textElements.length; i++) {
+	        textElements[i].classList.toggle('sidebar-collapsed');
+	    }
+	});
+	</script>
+
+	<hr>
+	<div class="dropdown">
+		<a href="#"
+			class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+			id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+			<i class="fa-solid fa-user fa-lg"></i>&nbsp;<strong>Utilisateur</strong>
+		</a>
+		<ul class="dropdown-menu text-small shadow"
+			aria-labelledby="dropdownUser2">
+			<li><a class="dropdown-item" href="#" onclick="window.close();">Fermer</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

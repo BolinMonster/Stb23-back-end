@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "12ff9767-3597-41fe-92cb-38fbf56e9714",
+		"name": "stb23",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "stb23 - home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/home",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - help",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - resume html",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stb23/resume/xml",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stb23",
+						"resume",
+						"xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - resume xml",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stb23/resume/xml",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stb23",
+						"resume",
+						"xml"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - get stb by id html",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stb23/html/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stb23",
+						"html",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - get stb by id xml",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stb23/xml/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stb23",
+						"xml",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<stb>\r\n  <title>title</title>\r\n  <version>0.0</version>\r\n  <date>2001-12-31T12:00:00</date>\r\n  <description>description</description>\r\n  <client>\r\n    <entity>stb23:entity</entity>\r\n    <person gender=\"M.\" lastname=\"Tintin\">Tintin</person>\r\n    <mail>tintin@mail.com</mail>\r\n  </client>\r\n  <team>\r\n    <member>\r\n      <person gender=\"M.\" lastname=\"Dupont\">Dupont</person>\r\n      <mail>dupont@mail.com</mail>\r\n      <function>stb23:function</function>\r\n    </member>\r\n    <member>\r\n      <person gender=\"M.\" lastname=\"Milou\">Milou</person>\r\n      <mail>milou@mail.com</mail>\r\n      <function>stb23:function</function>\r\n    </member>\r\n  </team>\r\n  <features>\r\n    <feature name=\"analyser la chasse\" number=\"0\" section=\"0\">\r\n      <description>statistiques de la chasse</description>\r\n      <priority>0</priority>\r\n    </feature>\r\n  </features>\r\n</stb>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/stb23/insert",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stb23",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23 - delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/stb23/delete/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"stb23",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stb23- search",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

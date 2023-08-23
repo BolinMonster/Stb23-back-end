@@ -1,0 +1,67 @@
+@startuml
+
+package "controller" {
+class HomeController
+class StbController
+class HelpController
+}
+
+package "dataloader" {
+class DataLoaderClient
+class DataLoaderFeature
+class DataLoaderMember
+class DataLoaderPerson
+class DataLoaderStb
+
+}
+
+package "models" {
+class Client
+class Feature
+class Member
+class Person
+class Stb
+class Stbs
+}
+
+package "repository" {
+class ClientRepository
+class FeatureRepository
+class MemberRepository
+class PersonRepository
+class StbRepository
+}
+
+package "service" {
+class ClientService
+class FeatureService
+class MemberService
+class PersonService
+class StbService
+
+}
+
+HomeController --> StbController
+HomeController --> HelpController
+
+StbController --> DataLoaderStb
+StbController --> StbService
+
+DataLoaderClient --> Client
+DataLoaderFeature --> Feature
+DataLoaderMember --> Member
+DataLoaderPerson --> Person
+DataLoaderStb --> Stb
+
+Client --> ClientRepository
+Feature --> FeatureRepository
+Member --> MemberRepository
+Person --> PersonRepository
+Stb --> StbRepository
+
+ClientRepository --> ClientService
+FeatureRepository --> FeatureService
+MemberRepository --> MemberService
+PersonRepository --> PersonService
+StbRepository --> StbService
+@enduml

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://univrouen.fr/stb23"
+	targetNamespace="http://univrouen.fr/stb23"
+	elementFormDefault="qualified">
+	
+	<!-- Déclarations -->
+	<xs:element name="stb" type="stbType" />
+		<xs:element name="client" type="clientType">
+			<xs:annotation>
+				<xs:documentation>Client demandeur du projet</xs:documentation>
+			</xs:annotation>
+		</xs:element>
+			<xs:element name="entity" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Nom de l'entité du client</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			 <!-- mail : utilisé aussi pour team -->
+			<xs:element name="mail" type="emailType">
+				<xs:annotation>
+					<xs:documentation>Mail du contact</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tel" type="phoneType">
+				<xs:annotation>
+					<xs:documentation>Téléphone</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		<xs:element name="team" type="teamType" />
+			<xs:element name="member" type="memberType" />
+				<!-- personne déja déclarée -->
+				<xs:element name="function" type="xs:string" />
+		<xs:element name="features" type="featuresType">
+			<xs:annotation>
+				<xs:documentation>Liste des fonctionnalités du projet</xs:documentation>
+			</xs:annotation>
+		</xs:element>
+			<xs:element name="feature" type="featureType">
+				<xs:annotation>
+					<xs:documentation>Fonctionnalité du projet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+					
+	<!-- Les types -->		
+	<xs:complexType name="stbType">
+		<xs:all>
+			<xs:element name="title" type="string128Type" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Titre de la STB</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:decimal" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Numéro de version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date de validation de la STB</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="string128Type" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Description(résumé)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="client" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="team" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="features" minOccurs="1" maxOccurs="1" />
+		</xs:all>
+	</xs:complexType>
+	
+	<xs:complexType name="clientType">
+		<xs:sequence>
+			<xs:element ref="entity" minOccurs="1" maxOccurs="1" />
+			<xs:element name="person" type="personType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nom de l'interlocuteur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- Au moins l'un des deux balises suivantes doit être définie -->
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="mail" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="tel" minOccurs="0" maxOccurs="unbounded" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="teamType">
+		<xs:sequence>
+			<xs:element ref="member" minOccurs="2" maxOccurs="8" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="memberType">
+		<xs:sequence>
+			<xs:element name="person" type="personType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nom du membre de l'équipe</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="mail" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="function" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="personType">
+		<xs:simpleContent>
+			<xs:extension base="string32Type">
+				<xs:attribute name="gender" type="genderType" use="optional" />
+				<xs:attribute name="lastname" type="string32Type" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:simpleType name="genderType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="M." />
+			<xs:enumeration value="Mme" />
+			<xs:enumeration value="Miss" />
+			<xs:enumeration value="Mrs" />
+			<xs:enumeration value="M" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="featuresType">
+		<xs:sequence>
+			<xs:element ref="feature" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="featureType">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="priority" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Niveau de priorité</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+						<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0" />
+						<xs:maxInclusive value="10" />
+				    </xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="delivery" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date de livraison</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Commentaire complémentaires</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="string32Type" use="required" />
+		<xs:attribute name="section" use="required">
+			  <xs:simpleType>
+			    <xs:restriction base="xs:int">
+			      <xs:maxInclusive value="32" />
+			    </xs:restriction>
+			  </xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="number" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:maxInclusive value="32" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	
+	<!-- Quelques contraintes -->	
+	<xs:simpleType name="string32Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32" />
+			<xs:pattern value="[A-Za-z\d\s'-]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="string128Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128" />
+			<!-- échappement du & -->
+			<xs:pattern value="[A-Za-z\d\s'-.,:;~@()&amp;#!$*=]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="phoneType">
+		<xs:restriction base="xs:positiveInteger">
+			<xs:pattern value="((\+)33|0|0033)[1-9](\d{2}){4}" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="emailType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+" />
+			<!-- <xs:pattern value="{stringmail}@{stringmail}.{ext}" /> -->
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="stringmail">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ext">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z]+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
